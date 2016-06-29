@@ -1,7 +1,7 @@
 
 module.exports = {
   namest: { //Names tables
-    comerciantes: 'comerciantes',
+    comerciante: 'comerciantes',
     publicidad: 'publicidad',
     tipo_publicidad: 'tipo_publicidad',
     servicios: 'servicios',

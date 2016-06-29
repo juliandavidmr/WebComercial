@@ -19,6 +19,7 @@ var flash 					= require('connect-flash');
 const routes_index 		= require('./routes/index');
 const routes_home 		= require('./routes/home');
 const routes_users 		= require('./routes/user');
+const routes_comerciante 		= require('./routes/comerciante');
 
 import { Menu } from "./db/db_menu";
 /*import { TipoSensor } from "./db/db_tiposensor";
@@ -53,7 +54,7 @@ app.use(passport.session());
 app.use('/', routes_index);
 app.use('/home', routes_home);
 app.use('/user', routes_users);
-
+app.use('/comerciante', routes_comerciante);
 
 /*
 ================================================================================
