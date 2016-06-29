@@ -9,6 +9,8 @@ module.exports = {
     menu: 'menu',
     rol: 'rol',
     cuenta: 'cuenta',
-    persona: 'persona'
+    persona: 'persona',
+    mpio: 'ciudad',
+    dpto: 'departamento'
   }
 };
