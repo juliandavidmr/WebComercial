@@ -20,6 +20,8 @@ const routes_index 		= require('./routes/index');
 const routes_home 		= require('./routes/home');
 const routes_users 		= require('./routes/user');
 const routes_comerciante 		= require('./routes/comerciante');
+const routes_publicidad 		= require('./routes/publicidad');
+const routes_api 		= require('./routes/api');
 
 import { Menu } from "./db/db_menu";
 /*import { TipoSensor } from "./db/db_tiposensor";
@@ -55,6 +57,8 @@ app.use('/', routes_index);
 app.use('/home', routes_home);
 app.use('/user', routes_users);
 app.use('/comerciante', routes_comerciante);
+app.use('/publicidad', routes_publicidad);
+app.use('/api', routes_api);
 
 /*
 ================================================================================

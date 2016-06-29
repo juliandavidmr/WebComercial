@@ -47,4 +47,16 @@ export class Comerciante {
   				console.error("ERROR" + error)
   			});
   	}
+
+    //Get all 'comerciantes'
+  	getAllComerciantes(callback) {
+  		knex(cdb.namest.comerciante)
+  			.select('*')
+  			.then(function(row) {
+  				callback(row);
+  			})
+  			.catch(function(error) {
+  				console.error("ERROR" + error)
+  			});
+  	}
 }

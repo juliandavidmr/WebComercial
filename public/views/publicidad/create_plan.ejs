@@ -1,1 +1,67 @@
-<h1>Gestionar Publicidad</h1>
+
+<div class="wrapper">
+          <div class="main-panel">
+              <div class="content">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card">
+                                <!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
+                                  <div class="header">
+                                    <h1 class="title">Gestionar Planes de Publicidad</h1>
+                                  </div>
+                                  <hr/>
+                                  <div class="content">
+                                      <form method="post" action="/publicidad/new_plan">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Descripción</label>
+                                                      <input type="text" class="form-control" name="descripcion" required>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Valor mensual ($)</label>
+                                                      <input type="text" class="form-control" name="precio" pattern="[0-9]*" title="Digita sólo números" required>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Estado</label>
+                                                      <select name="estado" class="form-control" required>
+                                                        <option value="T">Activo</option>
+                                                        <option value="F">Inactivo</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Espacio en pantalla</label>
+                                                      <select name="puntaje" class="form-control" required="">
+                                                        <option value="12">100%</option>
+                                                        <option value="6">50%</option>
+                                                        <option value="3">25%</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Cantidad de servicios</label>
+                                                      <input type="text" class="form-control" name="nro_servicios" pattern="[0-9]*" title="Digita sólo números" required>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+                                          <button type="submit" class="btn btn-info btn-fill pull-right">Registrar</button>
+                                          <div class="clearfix"></div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
