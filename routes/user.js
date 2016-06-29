@@ -4,18 +4,18 @@ const router = express.Router();
 const app 						= express();
 const http 						= require('http').Server(app);
 const io 							= require('socket.io')(http);
-//const db_u = require('../db/db_usuario');
 const dir = '../public/';
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 import { Usuario } from "../db/db_usuario";
 
+var dialog = require('dialog');
 
 
 // Register
 router.get('/', function(req, res) {
-	res.render(dir + 'views/usuarios/register');
+	res.render(dir + 'views/usuarios/register', {message: ''});
 });
 
 //Opciones del usuario
@@ -23,18 +23,21 @@ router.get('/', function(req, res) {
 router.get('/register', function(req, res) {
 	var id_persona=null;
 	new Usuario().getIdPersona(function(datos) {
-		console.log("Datos: " +datos[0].last_id);
-		id_persona = datos[0].idPersona;
-		console.log("ID2: " + id_persona);
+		id_persona = datos[0].last_id;
 	});
-	console.log("ID1: " + id_persona);
 	});
+
+  function alert(msg){
+    dialog.info(msg);
+  }
 
 router.post('/register', function(req, res, next) {
+	var id=0;
 	new Usuario().getIdPersona(function(datos) {
-		var id = datos[0].idPersona;
+		console.log("Datos: " + datos[0].last_id);
+		id = parseInt(datos[0].last_id);
+		console.log("id_persona: " + id );
 
-	console.log("id: " + id+1);
 
 	var new_persona = {
 		idPersona: id+1,
@@ -59,16 +62,20 @@ router.post('/register', function(req, res, next) {
 		if (row_persona > 0) {
 			new Usuario().insertUsuario(new_user, function(row_user, est_user) {
 				if (row_user > 0) {
-					alert("Usuario registrado exitosamente");
+          alert("Usuario creado exitosamente");
+          res.redirect(req.get('referer'));
+          //res.render(dir + 'views/usuarios/register', {message: "Usuario creado exitosamente"});
 				} else {
-					res.send('No se registró el usuario');
+          alert("Error al crear el usuario");
+					//res.render(dir + 'views/usuarios/register', {message: "Error al crear el usuario"});
 				}
 			});
 		} else {
-			res.send('No se registró la persona');
+      alert("Error al crear el usuario");
+			//res.render(dir + 'views/usuarios/register', {message: "Error al crear el usuario"});
 		}
 	});
-});
+		});
 });
 
 module.exports = router;

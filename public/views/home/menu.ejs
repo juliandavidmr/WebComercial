@@ -1,1 +1,176 @@
-<% include sidemenu %>
+<% include ../header %>
+
+  <% include ../scripts %>
+  <title>Menú principal</title>
+
+  <div class="header">
+  		<div class="container">
+  			<div class="logo">
+          <a href="/">El <span>In</span>dependiente</a>
+        </div>
+        <div class="header-right">
+
+          <span class="active uls-trigger" style="margin-right:20px"><label><%= data.user_data[0].Nombres + ' '+data.user_data[0].Apellidos %></label></span>
+        <a class="account" href="/home/logout">Cerrar sesión</a>
+  	<!-- Large modal -->
+  		</div>
+  		</div>
+  	</div>
+  	<div class="banner text-center">
+  	  <div class="container">
+        <h1>Guía Telefónica   <span class="segment-heading">    de números celulares </span></h1>
+        <p>La solución técnica al instante</p>
+        <a href="post-ad.html">Conoce más</a>
+  	  </div>
+  	</div>
+  	<!-- Categories -->
+  	<!--Vertical Tab-->
+  	<div class="categories-section main-grid-border">
+  		<div class="container">
+  			<h2 class="head">Menú principal</h2>
+  			<div class="category-list">
+  				<div id="id">
+  					<ul class="resp-tabs-list hor_1">
+              <% for(var i=0;i< data.list_permisos.length;i++){
+               %>
+               	<li><%= data.list_permisos[i].NombrePermiso %></li>
+
+               <% } %>
+  					</ul>
+
+  					<div class="resp-tabs-container hor_1">
+  						<!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
+              <% for(var i=0;i< data.list_permisos.length;i++){
+               %>
+               <div>
+               <%- include(data.list_permisos[i].URL) %>
+             </div>
+               <% } %>
+
+              <div>
+  							<div class="category">
+  								<div class="category-img">
+  									<img src="images/cat1.png" title="image" alt="" />
+  								</div>
+  								<div class="category-info">
+  									<h4>Mobiles</h4>
+  									<span>5,12,850 Ads</span>
+  									<a href="all-classifieds.html">View all Ads</a>
+  								</div>
+  								<div class="clearfix"></div>
+  							</div>
+  							<div class="sub-categories">
+  								<ul>
+  									<li><a href="mobiles.html">mobile phones</a></li>
+  									<li><a href="mobiles.html">Tablets</a></li>
+  									<li><a href="mobiles.html">Accessories</a></li>
+  									<div class="clearfix"></div>
+  								</ul>
+  							</div>
+  						</div>
+
+  					</div>
+  					<div class="clearfix"></div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  	<!--Plug-in Initialisation-->
+
+  	<script type="text/javascript">
+      $(document).ready(function() {
+
+          $('#id').easyResponsiveTabs({
+              type: 'vertical', //Types: default, vertical, accordion
+              width: 'auto', //auto or any width like 600px
+              fit: true, // 100% fit in a container
+              closed: 'accordion', // Start closed if in accordion view
+              tabidentify: 'hor_1', // The tab groups identifier
+              activate: function(event) { // Callback function if tab is switched
+                  var $tab = $(this);
+                  var $info = $('#nested-tabInfo2');
+                  var $name = $('span', $info);
+                  $name.text($tab.text());
+                  $info.show();
+              }
+          });
+      });
+  </script>
+  	<!-- //Categories -->
+  	<!--footer section start-->
+  		<footer>
+  			<div class="footer-top">
+  				<div class="container">
+  					<div class="foo-grids">
+  						<div class="col-md-3 footer-grid">
+  							<h4 class="footer-head">Who We Are</h4>
+  							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+  							<p>The point of using Lorem Ipsum is that it has a more-or-less normal letters, as opposed to using 'Content here.</p>
+  						</div>
+  						<div class="col-md-3 footer-grid">
+  							<h4 class="footer-head">Help</h4>
+  							<ul>
+  								<li><a href="howitworks.html">How it Works</a></li>
+  								<li><a href="sitemap.html">Sitemap</a></li>
+  								<li><a href="faq.html">Faq</a></li>
+  								<li><a href="feedback.html">Feedback</a></li>
+  								<li><a href="contact.html">Contact</a></li>
+  								<li><a href="typography.html">Shortcodes</a></li>
+  							</ul>
+  						</div>
+  						<div class="col-md-3 footer-grid">
+  							<h4 class="footer-head">Information</h4>
+  							<ul>
+  								<li><a href="regions.html">Locations Map</a></li>
+  								<li><a href="terms.html">Terms of Use</a></li>
+  								<li><a href="popular-search.html">Popular searches</a></li>
+  								<li><a href="privacy.html">Privacy Policy</a></li>
+  							</ul>
+  						</div>
+  						<div class="col-md-3 footer-grid">
+  							<h4 class="footer-head">Contact Us</h4>
+  							<span class="hq">Our headquarters</span>
+  							<address>
+  								<ul class="location">
+  									<li><span class="glyphicon glyphicon-map-marker"></span></li>
+  									<li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
+  									<div class="clearfix"></div>
+  								</ul>
+  								<ul class="location">
+  									<li><span class="glyphicon glyphicon-earphone"></span></li>
+  									<li>+0 561 111 235</li>
+  									<div class="clearfix"></div>
+  								</ul>
+  								<ul class="location">
+  									<li><span class="glyphicon glyphicon-envelope"></span></li>
+  									<li><a href="mailto:info@example.com">mail@example.com</a></li>
+  									<div class="clearfix"></div>
+  								</ul>
+  							</address>
+  						</div>
+  						<div class="clearfix"></div>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="footer-bottom text-center">
+  			<div class="container">
+  				<div class="footer-logo">
+  					<a href="index.html"><span>Re</span>sale</a>
+  				</div>
+  				<div class="footer-social-icons">
+  					<ul>
+  						<li><a class="facebook" href="#"><span>Facebook</span></a></li>
+  						<li><a class="twitter" href="#"><span>Twitter</span></a></li>
+  						<li><a class="flickr" href="#"><span>Flickr</span></a></li>
+  						<li><a class="googleplus" href="#"><span>Google+</span></a></li>
+  						<li><a class="dribbble" href="#"><span>Dribbble</span></a></li>
+  					</ul>
+  				</div>
+  				<div class="copyrights">
+  					<p> © 2016 Resale. All Rights Reserved | Design by  <a href="http://w3layouts.com/"> W3layouts</a></p>
+  				</div>
+  				<div class="clearfix"></div>
+  			</div>
+  		</div>
+  		</footer>
+<% include ../footer %>

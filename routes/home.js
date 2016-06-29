@@ -6,8 +6,8 @@ var session = require('express-session');
 const app 						= express();
 const http 						= require('http').Server(app);
 const io 							= require('socket.io')(http);
-//const db_u = require('../db/db_usuario');
 const dir = '../public/';
+
 
 app.use(session({secret: 'ssshhhhh'}));
 
@@ -17,23 +17,19 @@ const LocalStrategy = require('passport-local').Strategy;
 import { Menu } from "../db/db_menu";
 import { Usuario } from "../db/db_usuario";
 
-const rol_user = "";
 var sess;
 
-// Login
 router.get('/', function(req, res) {
   sess = req.session;
-//Session set when user Request our app via URL
   if(sess.email) {
-    console.log("si");
     res.redirect('/home/main');
   }
 else {
-  console.log("No");
     res.render(dir + 'views/home/login',{ message: '' });
 }
 });
 
+// Login
 router.get('/login', function(req, res) {
 	res.render(dir + 'views/usuario/login',{ message: '' });
 });
@@ -88,10 +84,9 @@ router.post('/main', function(req, res) {
   });
 
   router.get('/logout',function(req,res){
-    console.log("Logout");
     req.session.destroy(function(err) {
       if(err) {
-        console.log(err);
+        console.log("Error: " + err);
       } else {
         res.render(dir + 'views/home/login', { message: '' });
       }
