@@ -11,7 +11,11 @@ const dir = '../public/';
  });
 
  router.get('/consultas', function(req, res) {
-  res.render(dir + 'views/consultas',{ data: null});
+   const d ={
+     idCat: 0,
+     datos:null
+   }
+  res.render(dir + 'views/consultas',{ data: d});
  });
 
  router.get('/consultas/:id', function(req, res) {
