@@ -16,6 +16,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 import { Menu } from "../db/db_menu";
 import { Usuario } from "../db/db_usuario";
+import { Comerciante } from "../db/db_comerciante";
 
 var sess;
 
@@ -33,6 +34,7 @@ else {
 router.get('/login', function(req, res) {
 	res.render(dir + 'views/usuario/login',{ message: '' });
 });
+
 
 router.post('/login', function(req, res) {
   sess = req.session;
@@ -69,13 +71,17 @@ router.post('/main', function(req, res) {
   router.get('/main', function(req, res) {
     sess = req.session;
     if(sess.email) {
+
       new Menu().getPermisosRol(sess.rol, function(permisos) {
         new Usuario().getUserByIdCuenta(sess.cuenta, function(datos) {
+          new Comerciante().getAllComerciantes(function(comer) {
           const obj = {
             list_permisos: permisos,
-            user_data: datos
+            user_data: datos,
+            comerciantes: comer
           }
           res.render(dir + 'views/home/menu', { title: 'Menú principal' , data: obj });
+        });
         });
       });
     } else {
@@ -91,6 +97,16 @@ router.post('/main', function(req, res) {
         res.render(dir + 'views/home/login', { message: '' });
       }
 });
+});
+
+router.get('/getList', function(req, res){
+  res.json([{
+    titulo: 'Titulo1',
+    description: 'description'
+  }, {
+    titulo: 'Titulo2',
+    description: 'description2'
+  }]);
 });
 
 module.exports = router;

@@ -52,6 +52,25 @@ export class Comerciante {
   	getAllComerciantes(callback) {
   		knex(cdb.namest.comerciante)
   			.select('*')
+				.orderBy('Nombre')
+  			.then(function(row) {
+  				callback(row);
+  			})
+  			.catch(function(error) {
+  				console.error("ERROR" + error)
+  			});
+  	}
+
+		//Get 'comerciante' by categoria
+  	getComercianteByCategoria(idCat, callback) {
+				knex.where({
+				  FK_idCategoria: idCat,
+				  RegEstado:  'T'
+				})
+				.select('*')
+				.from(cdb.namest.reg_cat)
+				.innerJoin(cdb.namest.categoria, cdb.namest.reg_cat + '.FK_idCategoria', cdb.namest.categoria + '.idCategoria')
+				.innerJoin(cdb.namest.comerciante, cdb.namest.reg_cat + '.FK_idComerciante', cdb.namest.comerciante + '.idComerciante')
   			.then(function(row) {
   				callback(row);
   			})

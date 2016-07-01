@@ -11,6 +11,8 @@ module.exports = {
     cuenta: 'cuenta',
     persona: 'persona',
     mpio: 'ciudad',
-    dpto: 'departamento'
+    dpto: 'departamento',
+    categoria: 'categoria',
+    reg_cat: 'registro_categoria'
   }
 };

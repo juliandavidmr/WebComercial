@@ -1,5 +1,5 @@
 
-<div class="wrapper" onload="alerta()">
+<div class="wrapper">
           <div class="main-panel">
               <div class="content">
                   <div class="container-fluid">
@@ -45,21 +45,27 @@
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
-                                                  <div class="form-group">
+                                                  <div class="form-group" ng-init="getDptos()">
                                                       <label>Departamento</label>
-                                                      <input type="text" class="form-control" name="departamento" required>
+                                                      <select name="departamento" ng-model="Dpto" ng-change="getMpios(Dpto)" class="form-control" required="">
+                                                        <option ng-repeat="l in listDptos" ng-value="{{l.idDpto}}">{{l.NombreDpto}}</option>
+                                                      </select>
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
                                                   <div class="form-group">
                                                       <label>Municipio</label>
-                                                      <input type="text" class="form-control" name="ciudad" required>
+                                                      <select name="ciudad" class="form-control" required="">
+                                                        <option ng-repeat="l in listMpios" ng-value="{{l.idCiudad}}">{{l.NombreCiudad}}</option>
+                                                      </select>
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
-                                                  <div class="form-group">
+                                                  <div class="form-group" ng-init="getRoles()">
                                                       <label>Rol</label>
-                                                      <input type="text" class="form-control" name="rol"  required>
+                                                      <select name="rol" class="form-control" required="">
+                                                        <option ng-repeat="l in listRoles" ng-value="{{l.idRol}}">{{l.NombreRol}}</option>
+                                                      </select>
                                                   </div>
                                               </div>
                                           </div>

@@ -16,6 +16,7 @@
     "body-parser": "^1.15.0",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
+    "dialog": "^0.1.8",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.0.0",

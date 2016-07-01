@@ -19,12 +19,22 @@ USE `independiente`;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `NombreCategoria` varchar(100) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Class` varchar(100) DEFAULT NULL,
   `Estado` enum('T','F') NOT NULL,
+  `URL` varchar(50) NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.categoria: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.categoria: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` (`idCategoria`, `NombreCategoria`, `Descripcion`, `Class`, `Estado`, `URL`) VALUES
+	(1, 'Restaurantes', '', 'fa fa-cutlery', 'T', '/consultas/1'),
+	(2, 'Hoteles', '', 'fa fa-hotel', 'T', '/consultas/2'),
+	(3, 'Profesionales', '', 'fa fa-user', 'T', '/consultas/3'),
+	(4, 'Técnicos', 'Sistemas, cerrajeros, agro', 'fa fa-cog', 'T', '/consultas/4'),
+	(5, 'Tecnólogos', '', 'fa fa-laptop', 'T', '/consultas/5'),
+	(6, 'Empíricos', '', 'fa fa-puzzle-piece', 'T', '/consultas/6');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 
 
@@ -38,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `ciudad` (
   CONSTRAINT `FK_ciudad_departamento` FOREIGN KEY (`FK_idDpto`) REFERENCES `departamento` (`idDpto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.ciudad: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.ciudad: ~1.102 rows (aproximadamente)
 /*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
 INSERT INTO `ciudad` (`idCiudad`, `NombreCiudad`, `FK_idDpto`) VALUES
 	(1, 'Leticia', 1),
@@ -1150,7 +1160,7 @@ INSERT INTO `ciudad` (`idCiudad`, `NombreCiudad`, `FK_idDpto`) VALUES
 CREATE TABLE IF NOT EXISTS `comerciantes` (
   `idComerciante` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
-  `Descripcion` text,
+  `DescripcionCom` text,
   `Correo` varchar(100) NOT NULL,
   `PaginaWeb` varchar(100) DEFAULT NULL,
   `Telefono` bigint(20) NOT NULL,
@@ -1158,13 +1168,14 @@ CREATE TABLE IF NOT EXISTS `comerciantes` (
   `Latitud` varchar(100) DEFAULT NULL,
   `Longitud` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idComerciante`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.comerciantes: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.comerciantes: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `comerciantes` DISABLE KEYS */;
-INSERT INTO `comerciantes` (`idComerciante`, `Nombre`, `Descripcion`, `Correo`, `PaginaWeb`, `Telefono`, `Direccion`, `Latitud`, `Longitud`) VALUES
+INSERT INTO `comerciantes` (`idComerciante`, `Nombre`, `DescripcionCom`, `Correo`, `PaginaWeb`, `Telefono`, `Direccion`, `Latitud`, `Longitud`) VALUES
 	(1, 'ELECTRICOS DEL HUILA', 'Almacén de Electrónica', 'electro@hotmail.com', 'www.electro.com', 4356486, 'Calle 12A', '1.5465465467', '-75.23425435'),
-	(2, 'ELECTRICOS DEL HUILA2', '', 'yestiben-19@hotmail.com', '', 4356486, 'Calle 12A', '', '');
+	(2, 'ALMACEN VARGAS', '', 'yestiben-19@hotmail.com', '', 4356486, 'Calle 12A', '', ''),
+	(3, 'ALMACEN Y TALLER EL CHORRO', 'dasfdsdgfsd', 'jdfds', 'sdfdkg', 789, 'jk', '1.124234', '-78.12312');
 /*!40000 ALTER TABLE `comerciantes` ENABLE KEYS */;
 
 
@@ -1181,14 +1192,13 @@ CREATE TABLE IF NOT EXISTS `cuenta` (
   KEY `fk_cuenta_persona1_idx` (`FK_idPersona`),
   CONSTRAINT `fk_cuenta_persona1` FOREIGN KEY (`FK_idPersona`) REFERENCES `persona` (`idPersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cuenta_rol` FOREIGN KEY (`FK_idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.cuenta: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.cuenta: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `cuenta` DISABLE KEYS */;
 INSERT INTO `cuenta` (`idCuenta`, `Username`, `Password`, `Estado`, `FK_idRol`, `FK_idPersona`) VALUES
 	(2, 'admin', '$2a$10$1iLZP5AKUNcNLqKPz9nS1O3ksL5UAUUjry4ZATWOiYy.CLntwOdMu', 'T', 1, 2),
-	(10, 'admin', '$2a$10$ZQzwFN9iG.qjdT1oG1pmmeTqH1t9k101DjmQN2fXrd3X5FPEJgQya', 'T', 1, 3),
-	(11, 'admin', '$2a$10$n9yaWByOuw7x7/K2C0pN9uNhnrHDcSAAvTO37TPDRDgQ8cE2E/x1K', 'T', 1, 4);
+	(13, 'abc@hotmail.com', '$2a$10$CIKMLCRB8KEWbiEWqyoNC.C6gOlcjAoIz94UwZXSRW3imdvxZ4vqK', 'T', 1, 3);
 /*!40000 ALTER TABLE `cuenta` ENABLE KEYS */;
 
 
@@ -1199,7 +1209,7 @@ CREATE TABLE IF NOT EXISTS `departamento` (
   PRIMARY KEY (`idDpto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.departamento: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.departamento: ~32 rows (aproximadamente)
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
 INSERT INTO `departamento` (`idDpto`, `NombreDpto`) VALUES
 	(1, 'Amazonas'),
@@ -1301,12 +1311,11 @@ CREATE TABLE IF NOT EXISTS `persona` (
   CONSTRAINT `FK_persona_ciudad` FOREIGN KEY (`FK_idCiudad`) REFERENCES `ciudad` (`idCiudad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.persona: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.persona: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`idPersona`, `Identificacion`, `Nombres`, `Apellidos`, `Direccion`, `Correo`, `FK_idCiudad`) VALUES
 	(2, 1080364988, 'YILVER ESTIVEN', 'MOLINA HURTATIZ', 'Calle 12A', 'yestiben-19@hotmail.com', 1),
-	(3, 23423, 'SDfds', 'fsdf', 'gsdg', 'sdfg', 1),
-	(4, 54632, 'dfgdf', 'gdfg', 'dFG', 'dfgfdhA', 1);
+	(3, 12345, 'ABC', 'DEF', 'sdf', 'abc@hotmail.com', 667);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 
@@ -1354,23 +1363,27 @@ DELIMITER ;
 
 -- Volcando estructura para tabla independiente.publicidad
 CREATE TABLE IF NOT EXISTS `publicidad` (
-  `idPublicidad` bigint(20) NOT NULL,
+  `idPublicidad` bigint(20) NOT NULL AUTO_INCREMENT,
   `FK_idPublicidad` int(11) NOT NULL,
   `FK_idComerciante` int(11) NOT NULL,
-  `Fecha` datetime NOT NULL,
+  `Fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Estado` enum('T','F') NOT NULL,
   `FK_idCuenta` int(11) NOT NULL,
-  PRIMARY KEY (`FK_idPublicidad`,`FK_idComerciante`,`idPublicidad`),
+  PRIMARY KEY (`idPublicidad`),
   KEY `fk_publicidad_has_comerciantes_comerciantes1_idx` (`FK_idComerciante`),
   KEY `fk_publicidad_has_comerciantes_publicidad1_idx` (`FK_idPublicidad`),
   KEY `fk_publicidad_cuenta1_idx` (`FK_idCuenta`),
   CONSTRAINT `fk_publicidad_cuenta1` FOREIGN KEY (`FK_idCuenta`) REFERENCES `cuenta` (`idCuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_publicidad_has_comerciantes_comerciantes1` FOREIGN KEY (`FK_idComerciante`) REFERENCES `comerciantes` (`idComerciante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_publicidad_has_comerciantes_publicidad1` FOREIGN KEY (`FK_idPublicidad`) REFERENCES `tipo_publicidad` (`idPublicidad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.publicidad: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.publicidad: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `publicidad` DISABLE KEYS */;
+INSERT INTO `publicidad` (`idPublicidad`, `FK_idPublicidad`, `FK_idComerciante`, `Fecha`, `Estado`, `FK_idCuenta`) VALUES
+	(1, 1, 1, '2016-06-30 02:13:34', 'T', 2),
+	(2, 1, 2, '2016-06-30 02:16:25', 'T', 2),
+	(5, 1, 2, '2016-06-30 02:42:48', 'T', 2);
 /*!40000 ALTER TABLE `publicidad` ENABLE KEYS */;
 
 
@@ -1378,7 +1391,7 @@ CREATE TABLE IF NOT EXISTS `publicidad` (
 CREATE TABLE IF NOT EXISTS `registro_categoria` (
   `FK_idComerciante` int(11) NOT NULL,
   `FK_idCategoria` int(11) NOT NULL,
-  `Estado` enum('T','F') NOT NULL,
+  `RegEstado` enum('T','F') NOT NULL,
   PRIMARY KEY (`FK_idComerciante`,`FK_idCategoria`),
   KEY `fk_comerciantes_has_categoria_categoria1_idx` (`FK_idCategoria`),
   KEY `fk_comerciantes_has_categoria_comerciantes1_idx` (`FK_idComerciante`),
@@ -1386,8 +1399,12 @@ CREATE TABLE IF NOT EXISTS `registro_categoria` (
   CONSTRAINT `fk_comerciantes_has_categoria_comerciantes1` FOREIGN KEY (`FK_idComerciante`) REFERENCES `comerciantes` (`idComerciante`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.registro_categoria: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.registro_categoria: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `registro_categoria` DISABLE KEYS */;
+INSERT INTO `registro_categoria` (`FK_idComerciante`, `FK_idCategoria`, `RegEstado`) VALUES
+	(1, 1, 'T'),
+	(2, 1, 'T'),
+	(3, 1, 'T');
 /*!40000 ALTER TABLE `registro_categoria` ENABLE KEYS */;
 
 
@@ -1431,15 +1448,16 @@ CREATE TABLE IF NOT EXISTS `tipo_publicidad` (
   `Estado` enum('T','F') NOT NULL,
   `Puntaje` int(11) NOT NULL,
   `NroServicios` int(11) NOT NULL,
+  `Space` double NOT NULL,
   PRIMARY KEY (`idPublicidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla independiente.tipo_publicidad: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipo_publicidad` DISABLE KEYS */;
-INSERT INTO `tipo_publicidad` (`idPublicidad`, `Descripcion`, `ValorMensual`, `Estado`, `Puntaje`, `NroServicios`) VALUES
-	(1, 'Plan Preferencial', 40000, 'T', 12, 40),
-	(2, 'Plan Clientes', 20000, 'T', 6, 20),
-	(3, 'Plan Básico', 10000, 'T', 3, 10);
+INSERT INTO `tipo_publicidad` (`idPublicidad`, `Descripcion`, `ValorMensual`, `Estado`, `Puntaje`, `NroServicios`, `Space`) VALUES
+	(1, 'Plan Preferencial', 40000, 'T', 12, 40, 100),
+	(2, 'Plan Clientes', 20000, 'T', 6, 20, 50),
+	(3, 'Plan Básico', 10000, 'T', 3, 10, 25);
 /*!40000 ALTER TABLE `tipo_publicidad` ENABLE KEYS */;
 
 

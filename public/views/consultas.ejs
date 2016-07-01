@@ -1,7 +1,7 @@
-<% include ../header %>
+<% include header %>
 
-  <% include ../scripts %>
-  <title>Menú principal</title>
+  <% include scripts %>
+  <title>Consultas</title>
 
   <div class="header">
   		<div class="container">
@@ -10,92 +10,84 @@
         </div>
         <div class="header-right">
 
-          <span class="active uls-trigger" style="margin-right:20px"><label><%= data.user_data[0].Nombres + ' '+data.user_data[0].Apellidos %></label></span>
-        <a class="account" href="/home/logout">Cerrar sesión</a>
+        <a class="account" href="/">Página principal</a>
   	<!-- Large modal -->
   		</div>
   		</div>
   	</div>
-  	<div class="banner text-center">
+    <!--<div class="banner text-center">
   	  <div class="container">
         <h1>Guía Telefónica   <span class="segment-heading">    de números celulares </span></h1>
         <p>La solución técnica al instante</p>
   	  </div>
-  	</div>
-  	<!-- Categories -->
-  	<!--Vertical Tab-->
-  	<div class="categories-section main-grid-border" ng-controller="ControllerMenu">
-  		<div class="container" ng-init="getListado()">
-        <br/>
-  			<h3 >Menú principal</h3><br/>
-  			<div class="category-list">
-  				<div id="id">
-  					<ul class="resp-tabs-list hor_1">
-              <% for(var i=0;i< data.list_permisos.length;i++){
-               %>
-               	<li><%= data.list_permisos[i].NombrePermiso %></li>
+  	</div>-->
+    <div >
+      <div class="categories-section main-grid-border" ng-controller="ControllerMenu" ng-init="getComerciantesByCategory(<%= data.idCat %>)">
+    		<div class="container" ng-init="getCategorias()">
+    			<div class="row">
+            <div class="categories" style="text-align: center" ng-init="getCategorias()">
+              <div class="container">
+                  <div style="background-color:rgb(245, 245, 245)">
+                  <h3>Elige la categoría</h3>
+                </div>
 
-               <% } %>
-  					</ul>
+                <div class="col-md-2 focus-grid" ng-repeat="l in listCategorias" >
+                  <a href="#" ng-click="getComerciantesByCategory(l.idCategoria)">
+                    <div class="focus-border">
+                      <div class="focus-layout">
+                        <div class="focus-image"><i class="{{l.Class}}"></i></div>
+                        <h4 class="clrchg">{{l.NombreCategoria}}</h4>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+    			<div class="category-list">
+    					<ul class="resp-tabs-list hor_1">
+                <div class="text-center">
+              	  <div class="container" >
+                    <h1><i class="fa fa-search"></i> <span ng-bind="NameCat.NombreCategoria"></span></h1>
+              	  </div>
+              	</div>
+    					</ul>
+              <br/>
 
-  					<div class="resp-tabs-container hor_1">
-  						<!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
-              <% for(var i=0;i< data.list_permisos.length;i++){
-               %>
-               <div>
-               <%- include(data.list_permisos[i].URL) %>
-             </div>
-               <% } %>
+    					<div class="col-md-4" ng-repeat="d in DatosComerciales">
+    							<div class="focus-border">
+                    <div style="padding:15px">
+                      <div class="col-md-2">
+    								<div class="category-img">
+    									<div><i style="font-size:30pt" class="{{d.Class}}"></i></div>
+    								</div>
+                    </div>
+                    <div class="col-md-10">
+                    <div class="footer-grid">
+        							<h3>{{d.Nombre}}</h3>
+    									<p>{{d.DescripcionCom}}</p>
+    									<a href="#">Ver mapa</a>
+    								</div>
+                    </div>
+    								<div class="clearfix"></div>
 
-              <div>
-  							<div class="category">
-  								<div class="category-img">
-  									<img src="images/cat1.png" title="image" alt="" />
-  								</div>
-  								<div class="category-info">
-  									<h4>Mobiles</h4>
-  									<span>5,12,850 Ads</span>
-  									<a href="all-classifieds.html">View all Ads</a>
-  								</div>
-  								<div class="clearfix"></div>
-  							</div>
-  							<div class="sub-categories">
-  								<ul>
-  									<li><a href="mobiles.html">mobile phones</a></li>
-  									<li><a href="mobiles.html">Tablets</a></li>
-  									<li><a href="mobiles.html">Accessories</a></li>
-  									<div class="clearfix"></div>
-  								</ul>
-  							</div>
-  						</div>
+    							</div>
 
-  					</div>
-  					<div class="clearfix"></div>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+    						</div>
+
+    					</div>
+    					<div class="clearfix"></div>
+    			</div>
+
+    		</div>
+    	</div>
+    </div>
+
+
+
   	<!--Plug-in Initialisation-->
 
-  	<script type="text/javascript">
-      $(document).ready(function() {
 
-          $('#id').easyResponsiveTabs({
-              type: 'vertical', //Types: default, vertical, accordion
-              width: 'auto', //auto or any width like 600px
-              fit: true, // 100% fit in a container
-              closed: 'accordion', // Start closed if in accordion view
-              tabidentify: 'hor_1', // The tab groups identifier
-              activate: function(event) { // Callback function if tab is switched
-                  var $tab = $(this);
-                  var $info = $('#nested-tabInfo2');
-                  var $name = $('span', $info);
-                  $name.text($tab.text());
-                  $info.show();
-              }
-          });
-      });
-  </script>
   	<!-- //Categories -->
   	<!--footer section start-->
   		<footer>
@@ -173,4 +165,4 @@
   			</div>
   		</div>
   		</footer>
-<% include ../footer %>
+<% include footer %>

@@ -46,15 +46,15 @@ router.post('/register', function(req, res, next) {
 		Apellidos: req.body.apellidos,
 		Direccion: req.body.direccion,
 		Correo:req.body.correo,
-		FK_idCiudad:1
+		FK_idCiudad:req.body.ciudad
 
 	}
 
 	var new_user = {
-		Username: "admin",
-		password: "admin098",
+		Username: req.body.correo,
+		password: req.body.identificacion,
 		Estado: 'T',
-		FK_idRol: '1',
+		FK_idRol: req.body.rol,
 		FK_idPersona: id+1
 	}
 	console.log("Persona: " + new_persona +", User: " + new_user);

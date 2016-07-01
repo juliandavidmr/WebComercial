@@ -90,4 +90,16 @@ export class Usuario {
   			callback(null, isMatch);
   		});
   	}
+
+		//Get roles
+	  getRoles(callback) {
+	    knex(cdb.namest.rol)
+			.select("*")
+				.then(function(rows) {
+					callback(rows);
+				})
+				.catch(function(error) {
+					console.error("ERROR " + error)
+				});
+		};
 }

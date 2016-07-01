@@ -24,132 +24,44 @@
   </div>
 </div>
   <!-- content-starts-here -->
-  <div class="content">
-    <div class="categories">
+  <hr/>
+  <div class="content" ng-controller="ControllerMenu">
+    <div class="categories" style="text-align: center" ng-init="getCategorias()">
       <div class="container">
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html">
+          <div class="trend-ads">
+          <h2>Categorías principales</h2>
+        </div>
+        <div class="col-md-4 focus-grid" ng-repeat="l in listCategorias">
+          <a ng-click="getComerciantesByCategory(l.idCategoria)" href="{{l.URL}}" >
             <div class="focus-border">
               <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-mobile"></i></div>
-                <h4 class="clrchg">Mobiles</h4>
+                <div class="focus-image"><i class="{{l.Class}}"></i></div>
+                <h4 class="clrchg">{{l.NombreCategoria}}</h4>
+                <p style="font-size:12pt; margin-top:-10px ">{{l.Descripcion}}</p>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab2">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-laptop"></i></div>
-                <h4 class="clrchg"> Electronics & Appliances</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab3">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-car"></i></div>
-                <h4 class="clrchg">Cars</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab4">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-motorcycle"></i></div>
-                <h4 class="clrchg">Bikes</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab5">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-wheelchair"></i></div>
-                <h4 class="clrchg">Furnitures</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab6">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-paw"></i></div>
-                <h4 class="clrchg">Pets</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab7">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-book"></i></div>
-                <h4 class="clrchg">Books, Sports & Hobbies</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab8">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-asterisk"></i></div>
-                <h4 class="clrchg">Fashion</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab9">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-gamepad"></i></div>
-                <h4 class="clrchg">Kids</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab10">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-shield"></i></div>
-                <h4 class="clrchg">Services</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab11">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-at"></i></div>
-                <h4 class="clrchg">Jobs</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab12">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-home"></i></div>
-                <h4 class="clrchg">Real Estate</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="clearfix"></div>
       </div>
     </div>
+
+
+    <div class="consulta">
+      <div class="bann text-center">
+        <div class="container">
+          <div class="col-md-12">
+          <h3>Encuentra aquí la</h3>
+          <h1>Guía Telefónica Comercial</span></h1>
+          <h3>y accede fácilmente a todos los servicios comerciales que requieres</h3>
+          <br/>
+        </div>
+        <a href="/consultas"><i class="fa fa-search"></i>  Consultar</a>
+      </div>
+
+      </div>
+
+    </div>
+    <a href="post-ad.html"></a>
     <div class="trending-ads">
       <div class="container">
       <!-- slider -->
@@ -198,90 +110,8 @@
                   </div>
                 </div>
               </li>
-              <li>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p5.jpg"/>
-                    <span class="price">&#36; 1599</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>There are many variations of passages</h5>
-                    <span>1 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p6.jpg"/>
-                    <span class="price">&#36; 1099</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>passage of Lorem Ipsum you need to be</h5>
-                    <span>1 day ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p7.jpg"/>
-                    <span class="price">&#36; 109</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>It is a long established fact that a reader</h5>
-                    <span>9 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p8.jpg"/>
-                    <span class="price">&#36; 189</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>Lorem Ipsum is simply dummy</h5>
-                    <span>3 hour ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p9.jpg"/>
-                    <span class="price">&#36; 2599</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>Lorem Ipsum is simply dummy</h5>
-                    <span>3 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p10.jpg"/>
-                    <span class="price">&#36; 3999</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>It is a long established fact that a reader</h5>
-                    <span>9 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p11.jpg"/>
-                    <span class="price">&#36; 2699</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>passage of Lorem Ipsum you need to be</h5>
-                    <span>1 day ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="images/p12.jpg"/>
-                    <span class="price">&#36; 899</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>There are many variations of passages</h5>
-                    <span>1 hour ago</span>
-                  </div>
-                </div>
-              </li>
+
+
           </ul>
         <script type="text/javascript">
            $(window).load(function() {
@@ -327,9 +157,6 @@
           <div class="app-buttons">
             <div class="app-button">
               <a href="#"><img src="images/1.png" alt=""></a>
-            </div>
-            <div class="app-button">
-              <a href="#"><img src="images/2.png" alt=""></a>
             </div>
             <div class="clearfix"> </div>
           </div>

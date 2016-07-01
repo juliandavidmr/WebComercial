@@ -49,8 +49,12 @@ label{
 .banner {
 	background:url('../images/banner.jpg') no-repeat 0px 0px;
 	background-size:cover;
-	min-height:240px;
+	min-height:120px;
 	padding:45px 0 0 0;
+}
+.bann {
+	background-size:cover;
+	padding:20px 0 40px 0;
 }
 .main-banner {
 	background:url('../images/banner.jpg') no-repeat 0px 0px;
@@ -75,6 +79,26 @@ label{
     padding: 10px 20px;
 }
 .banner a:hover {
+	background:#F22613;
+}
+
+.bann h1 {
+	color:#fff;
+	font-size: 45px;
+}
+.bann p {
+    color: #fff;
+    margin: 10px 0 30px 0;
+    font-size: 18px;
+}
+.bann a {
+	text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    background-color: #969696	;
+		padding: 10px 20px;
+}
+.bann a:hover {
 	background:#F22613;
 }
 .modal-header {
@@ -338,6 +362,31 @@ border:1px solid #e7eaed;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+
+.focus2-image{
+  text-align: center;
+  transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.focus2-image i {
+    font-size: 25px;
+    color: #fff;
+    background: #dd0908;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+
+
 .focus-layout:hover div.focus-image i{
 	background:#FBFBFB;
 	color:#000;
@@ -934,6 +983,11 @@ span.price:after {
 }
 /*--//flexisel--*/
 /*--mobile-app--*/
+
+.consulta {
+    background-color: rgba(242,38,19, 0.65);
+	padding-top:20px;
+}
 
 .mobile-app {
     background-color: rgba(242,38,19, 0.65);
