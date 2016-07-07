@@ -10,17 +10,18 @@
     </div>
     <div class="header-right">
 
-    <a class="account" href="/home">Iniciar sesión</a>
-<span class="active uls-trigger">Quiénes somos  </span>
+    <a class="account" href="/home"><i class="fa fa-sign-in"></i> Iniciar sesión</a>
+
+<a  href="/empresa"><span class="active uls-trigger">Quiénes somos</span></a>
 
   </div>
   </div>
 </div>
 <div class="main-banner banner text-center">
   <div class="container">
-    <h1>Guía Telefónica   <span class="segment-heading">    de números celulares </span></h1>
+    <h1>Guía Telefónica   <span class="segment-heading">    Comercial del Caquetá </span></h1>
     <p>La solución técnica al instante</p>
-    <a href="post-ad.html">Conoce más</a>
+    <a href="/empresa">Conoce más</a>
   </div>
 </div>
   <!-- content-starts-here -->
@@ -31,17 +32,19 @@
           <div class="trend-ads">
           <h2>Categorías principales</h2>
         </div>
-        <div class="col-md-4 focus-grid" ng-repeat="l in listCategorias">
-          <a ng-click="getComerciantesByCategory(l.idCategoria)" href="{{l.URL}}" >
+        <div class="col-md-12 col-md-offset-1">
+        <div class="col-md-2 focus-grid" ng-repeat="l in listCategorias">
+          <a ng-click="getComerciantesByCategory(l.idCategoria)" href="/consultas/{{l.idCategoria}}" >
             <div class="focus-border">
               <div class="focus-layout">
                 <div class="focus-image"><i class="{{l.Class}}"></i></div>
                 <h4 class="clrchg">{{l.NombreCategoria}}</h4>
-                <p style="font-size:12pt; margin-top:-10px ">{{l.Descripcion}}</p>
+                <!--<p style="font-size:10pt; margin-top:-10px ">{{l.Descripcion}}</p>-->
               </div>
             </div>
           </a>
         </div>
+      </div>
       </div>
     </div>
 
@@ -52,7 +55,7 @@
           <div class="col-md-12">
           <h3>Encuentra aquí la</h3>
           <h1>Guía Telefónica Comercial</span></h1>
-          <h3>y accede fácilmente a todos los servicios comerciales que requieres</h3>
+          <h3>y accede fácilmente a todos los servicios que requieres</h3>
           <br/>
         </div>
         <a href="/consultas"><i class="fa fa-search"></i>  Consultar</a>
@@ -151,9 +154,9 @@
           <a href="mobileapp.html"><img src="images/app.png" alt=""></a>
         </div>
         <div class="col-md-7 app-right">
-          <h3>La manera <span>más fácil </span> para hacer publicidad comercial en tu ciudad </h3>
-          <p>Aquí podrás encontrar la Guía Telefónica Comercial más completa de Florencia. Prueba ahora mismo la gama de servicios que tenemos para ti. </p>
-          <p><span>Descárgala gratis en:</span></p>
+          <h3>La manera <span>más fácil </span> para hacer publicidad en tu ciudad </h3>
+          <p>Aquí podrás encontrar la Guía Telefónica Comercial más completa de Florencia. Empíricos, técnicos, tecnólogos y profesionales que ejercen como independientes. </p>
+          <p><span>Descárga gratis nuestra app en:</span></p>
           <div class="app-buttons">
             <div class="app-button">
               <a href="#"><img src="images/1.png" alt=""></a>
@@ -170,52 +173,8 @@
     <div class="footer-top">
       <div class="container">
         <div class="foo-grids">
-          <div class="col-md-3 footer-grid">
-            <h4 class="footer-head">Who We Are</h4>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            <p>The point of using Lorem Ipsum is that it has a more-or-less normal letters, as opposed to using 'Content here.</p>
-          </div>
-          <div class="col-md-3 footer-grid">
-            <h4 class="footer-head">Help</h4>
-            <ul>
-              <li><a href="howitworks.html">How it Works</a></li>
-              <li><a href="sitemap.html">Sitemap</a></li>
-              <li><a href="faq.html">Faq</a></li>
-              <li><a href="feedback.html">Feedback</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="typography.html">Shortcodes</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 footer-grid">
-            <h4 class="footer-head">Information</h4>
-            <ul>
-              <li><a href="regions.html">Locations Map</a></li>
-              <li><a href="terms.html">Terms of Use</a></li>
-              <li><a href="popular-search.html">Popular searches</a></li>
-              <li><a href="privacy.html">Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 footer-grid">
-            <h4 class="footer-head">Contact Us</h4>
-            <span class="hq">Our headquarters</span>
-            <address>
-              <ul class="location">
-                <li><span class="glyphicon glyphicon-map-marker"></span></li>
-                <li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
-                <div class="clearfix"></div>
-              </ul>
-              <ul class="location">
-                <li><span class="glyphicon glyphicon-earphone"></span></li>
-                <li>+0 561 111 235</li>
-                <div class="clearfix"></div>
-              </ul>
-              <ul class="location">
-                <li><span class="glyphicon glyphicon-envelope"></span></li>
-                <li><a href="mailto:info@example.com">mail@example.com</a></li>
-                <div class="clearfix"></div>
-              </ul>
-            </address>
-          </div>
+
+
           <div class="clearfix"></div>
         </div>
       </div>
@@ -226,7 +185,17 @@
         <a href="/">EL <span>IN</span>DEPENDIENTE</a>
       </div>
       <div class="footer-social-icons">
+        <ul style="color:white">
+          <li><span class="glyphicon glyphicon-map-marker"></span></li>
+          <li>UNIDAD DE EMPRENDIMIENTO - UNIVERSIDAD DE LA AMAZONIA</li>
+          <li><span class="glyphicon glyphicon-earphone"></span></li>
+          <li>315 673 9482</li>
+          <li><span class="glyphicon glyphicon-envelope"></span></li>
+          <li>lvargas08@gmail.com
+          </li>
+        </ul>
         <ul>
+          <br/>
           <li><a class="facebook" href="#"><span>Facebook</span></a></li>
           <li><a class="twitter" href="#"><span>Twitter</span></a></li>
           <li><a class="flickr" href="#"><span>Flickr</span></a></li>

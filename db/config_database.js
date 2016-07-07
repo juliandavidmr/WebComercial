@@ -13,6 +13,7 @@ module.exports = {
     mpio: 'ciudad',
     dpto: 'departamento',
     categoria: 'categoria',
+    subcategoria: 'subcategoria',
     reg_cat: 'registro_categoria'
   }
 };

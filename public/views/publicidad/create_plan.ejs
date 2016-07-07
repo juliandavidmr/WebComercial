@@ -85,8 +85,7 @@ var elem=$('#container ul');
                                           <div class="ads-display col-md-12">
                                   					<div class="wrapper">
                                   					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                                  					  <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
-                                  					  </ul>
+
                                   					  <div id="myTabContent" class="tab-content" ng-init="getPlanes()">
                                   						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                   						   <div>
@@ -95,6 +94,31 @@ var elem=$('#container ul');
                                                     <div class="header">
                                                       <h1 class="title">Listado de Planes de Publicidad</h1>
                                                     </div>
+
+																										<div class="col-md-6 page_1"><br/>
+																							              <table class="table table-bordered">
+																											<thead>
+																												<tr>
+																													<th>#</th>
+																													<th>Nombre</th>
+																													<th>Servicios</th>
+																													<th>Espacio en pantalla</th>
+																													<th>Valor mensual</th>
+																													<th></th>
+																												</tr>
+																											</thead>
+																											<tbody>
+																												<tr ng-repeat="l in listPlanes" ng-value="{{l.idPublicidad}}">
+																													<td >{{l.idPublicidad}}</td>
+																													<td>{{l.Descripcion}}</td>
+																													<td>{{l.NroServicios}}</td>
+																													<td>{{l.Space}} %</td>
+																													<td><span class="badge badge-primary"> ($) {{l.ValorMensual}}</span></td>
+																													<td><a href="#"><span class="badge badge-warning"> Modificar</span></a></td>
+																												</tr>
+																											</tbody>
+																										  </table>
+																									</div>
                                                     <div class="clearfix"></div>
                                                     <hr/>
                                                       <ul class="list" ng-model="Plan">
@@ -116,7 +140,7 @@ var elem=$('#container ul');
                                   						</div>
                                   							</div>
                                   						</div>
-                                  						
+
                                   					  </div>
                                   					</div>
                                   				</div>

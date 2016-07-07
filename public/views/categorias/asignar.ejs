@@ -8,11 +8,11 @@
                               <div class="card">
                                 <!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
                                   <div class="header">
-                                    <h1 class="title">Asignar publicidad</h1>
+                                    <h1 class="title">Asignar categorías</h1>
                                   </div>
                                   <hr/>
                                   <div class="content">
-                                      <form method="post" action="/publicidad/new_publicidad">
+                                      <form method="post" action="/comerciante/asignar_categoria">
                                           <div class="row">
                                               <div class="col-md-12">
                                                   <div class="form-group" ng-init="getComerciantes()">
@@ -29,11 +29,19 @@
                                                       </select>-->
                                                   </div>
                                               </div>
-                                              <div class="col-md-7">
-                                                  <div class="form-group" ng-init="getPlanes()">
-                                                      <label>Plan de publicidad</label>
-                                                      <select name="plan" class="form-control" required="">
-                                                        <option ng-repeat="l in listPlanes" ng-value="{{l.idPublicidad}}">{{l.Descripcion}}</option>
+                                              <div class="col-md-12">
+                                                  <div class="form-group" ng-init="getCategorias()">
+                                                      <label>Categoría</label>
+                                                      <select name="categoria" ng-model="Cat" ng-change="getSubcategorias(Cat)" class="form-control" required="">
+                                                        <option ng-repeat="l in listCategorias" ng-value="{{l.idCategoria}}">{{l.NombreCategoria}}</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Subcategoría</label>
+                                                      <select name="subcategoria" class="form-control" required="">
+                                                        <option ng-repeat="l in listSubcategorias" ng-value="{{l.idSubcategoria}}">{{l.NombreSubcategoria}}</option>
                                                       </select>
                                                   </div>
                                               </div>

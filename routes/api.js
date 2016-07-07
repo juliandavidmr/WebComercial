@@ -70,15 +70,22 @@ router.get('/allComerciantes', function(req, res) {
 	router.get('/Comerciantes/:idCat', function(req, res) {
 		const idCat = req.params['idCat'];
 
-		new Categoria().getCategoriaById(idCat,function(cat) {
 			new Comerciante().getComercianteByCategoria(idCat,function(com) {
 				const data = {
-					categoria: cat,
 					datos: com
 				}
 				res.json(data);
     });
-  });
+	});
+
+	router.get('/Subcategorias/:idCat', function(req, res) {
+		const idCat = req.params['idCat'];
+			new Categoria().getSubcategoriasByCategoria(idCat,function(com) {
+				const data = {
+					datos: com
+				}
+				res.json(data);
+    });
 	});
 
 

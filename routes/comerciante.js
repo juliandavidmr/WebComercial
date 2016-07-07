@@ -29,13 +29,14 @@ router.post('/register', function(req, res, next) {
 
 	var new_comerciante = {
 		Nombre: req.body.nombre,
-		Descripcion: req.body.descripcion,
+		DescripcionCom: req.body.descripcion,
 		Correo: req.body.correo,
 		PaginaWeb: req.body.pagina_web,
     Telefono: req.body.telefono,
 		Direccion: req.body.direccion,
 		Latitud: req.body.latitud,
-		Longitud: req.body.longitud
+		Longitud: req.body.longitud,
+		Stars:0
 	}
 
 	new Comerciante().insertComerciante(new_comerciante, function(row, est) {
@@ -45,6 +46,26 @@ router.post('/register', function(req, res, next) {
           //res.render(dir + 'views/usuarios/register', {message: "Usuario creado exitosamente"});
 		} else {
       alert("Error al crear el comerciante");
+			//res.render(dir + 'views/usuarios/register', {message: "Error al crear el usuario"});
+		}
+	});
+});
+
+router.post('/asignar_categoria', function(req, res, next) {
+
+	var new_row = {
+		FK_idComerciante: req.body.comerciante,
+		FK_idSubcategoria: req.body.subcategoria,
+		RegEstado: 'T'
+	}
+
+	new Comerciante().asignarCategorias(new_row, function(row, est) {
+		if (row) {
+          alert("Operación exitosa");
+          res.redirect(req.get('referer'));
+          //res.render(dir + 'views/usuarios/register', {message: "Usuario creado exitosamente"});
+		} else {
+      alert("Error en la operación");
 			//res.render(dir + 'views/usuarios/register', {message: "Error al crear el usuario"});
 		}
 	});

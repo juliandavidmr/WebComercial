@@ -22,19 +22,17 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `Descripcion` text NOT NULL,
   `Class` varchar(100) DEFAULT NULL,
   `Estado` enum('T','F') NOT NULL,
-  `URL` varchar(50) NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.categoria: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.categoria: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` (`idCategoria`, `NombreCategoria`, `Descripcion`, `Class`, `Estado`, `URL`) VALUES
-	(1, 'Restaurantes', '', 'fa fa-cutlery', 'T', '/consultas/1'),
-	(2, 'Hoteles', '', 'fa fa-hotel', 'T', '/consultas/2'),
-	(3, 'Profesionales', '', 'fa fa-user', 'T', '/consultas/3'),
-	(4, 'Técnicos', 'Sistemas, cerrajeros, agro', 'fa fa-cog', 'T', '/consultas/4'),
-	(5, 'Tecnólogos', '', 'fa fa-laptop', 'T', '/consultas/5'),
-	(6, 'Empíricos', '', 'fa fa-puzzle-piece', 'T', '/consultas/6');
+INSERT INTO `categoria` (`idCategoria`, `NombreCategoria`, `Descripcion`, `Class`, `Estado`) VALUES
+	(1, 'Técnicos y algo más', 'A la carta, corriente, comidas rápidas y a domicilio', 'fa fa-cog', 'T'),
+	(2, 'Tecnólogos', 'Hospedaje 24 horas', 'fa fa-hotel', 'T'),
+	(3, 'Profesionales', 'Almacenes de ropa de toda marca y estilos, boutiques', 'fa fa-user', 'T'),
+	(4, 'Especialistas', 'Proveedores de todos los derivados de la leche', 'fa fa-cog', 'T'),
+	(5, 'Magíster', 'Bebidas y helados con el mejor sabor del café ', 'fa fa-laptop', 'T');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 
 
@@ -1167,15 +1165,19 @@ CREATE TABLE IF NOT EXISTS `comerciantes` (
   `Direccion` varchar(100) NOT NULL,
   `Latitud` varchar(100) DEFAULT NULL,
   `Longitud` varchar(100) DEFAULT NULL,
+  `Stars` int(11) DEFAULT NULL,
   PRIMARY KEY (`idComerciante`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.comerciantes: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.comerciantes: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `comerciantes` DISABLE KEYS */;
-INSERT INTO `comerciantes` (`idComerciante`, `Nombre`, `DescripcionCom`, `Correo`, `PaginaWeb`, `Telefono`, `Direccion`, `Latitud`, `Longitud`) VALUES
-	(1, 'ELECTRICOS DEL HUILA', 'Almacén de Electrónica', 'electro@hotmail.com', 'www.electro.com', 4356486, 'Calle 12A', '1.5465465467', '-75.23425435'),
-	(2, 'ALMACEN VARGAS', '', 'yestiben-19@hotmail.com', '', 4356486, 'Calle 12A', '', ''),
-	(3, 'ALMACEN Y TALLER EL CHORRO', 'dasfdsdgfsd', 'jdfds', 'sdfdkg', 789, 'jk', '1.124234', '-78.12312');
+INSERT INTO `comerciantes` (`idComerciante`, `Nombre`, `DescripcionCom`, `Correo`, `PaginaWeb`, `Telefono`, `Direccion`, `Latitud`, `Longitud`, `Stars`) VALUES
+	(1, 'ELECTRICOS DEL HUILA', 'Almacén de Electrónica', 'electro@hotmail.com', 'www.electro.com', 4356486, 'Calle 12A N° 3-44 Florencia Caquetá', '1.5465465467', '-75.23425435', 1),
+	(2, 'ALMACEN VARGAS', 'Venta de repuestos originales y de segunda para carros y motos', 'yestiben-19@hotmail.com', '', 4356486, 'Calle 12A N° 3-44 Florencia Caquetá', '', '', 3),
+	(3, 'ALMACEN Y TALLER EL CHORRO', 'dasfdsdgfsd', 'chorro@hotmail.com', 'sdfdkg', 3143242453, 'Calle 12A N° 3-44 Florencia Caquetá', '1.124234', '-78.12312', 4),
+	(4, 'DROGAS LA REBAJA', 'Medicina natural y química', 'larebaja@hotmail.com', 'da', 3153424524, 'Calle 12A N° 3-44 Florencia Caquetá', NULL, NULL, 5),
+	(5, 'MAGOLA HERMIDA HERRERA', 'Ingeniera de Sistemas con énfasis en problemas de la ciencia y la ingeniería', 'magola@hotmail.com', 'www.magola.com', 3132619459, 'Florencia Caquetá', '', '', 0),
+	(6, 'JORGE ENRIQUE TRIVIÑO MACIAS', '', 'triviño@hotmail.com', 'www.trivi.com', 3158743665, 'Florencia Caquetá', '', '', 0);
 /*!40000 ALTER TABLE `comerciantes` ENABLE KEYS */;
 
 
@@ -1259,7 +1261,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   CONSTRAINT `fk_rol_has_permisos_rol1` FOREIGN KEY (`FK_idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.menu: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.menu: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`FK_idRol`, `FK_idPermiso`, `Estado`) VALUES
 	(1, 1, 'T'),
@@ -1267,11 +1269,13 @@ INSERT INTO `menu` (`FK_idRol`, `FK_idPermiso`, `Estado`) VALUES
 	(1, 3, 'T'),
 	(1, 4, 'T'),
 	(1, 5, 'T'),
+	(1, 6, 'T'),
 	(2, 1, 'F'),
 	(2, 2, 'F'),
 	(2, 3, 'T'),
 	(2, 4, 'F'),
-	(2, 5, 'F');
+	(2, 5, 'F'),
+	(2, 6, 'F');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 
@@ -1282,16 +1286,17 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   `URL` varchar(45) NOT NULL,
   `Icono` varchar(45) NOT NULL,
   PRIMARY KEY (`idPermiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.permisos: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.permisos: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
 INSERT INTO `permisos` (`idPermiso`, `NombrePermiso`, `URL`, `Icono`) VALUES
 	(1, 'Planes de publicidad', '../publicidad/create_plan', 's'),
 	(2, 'Comerciantes', '../comerciantes/create', 'd'),
 	(3, 'Servicios', '../servicios/gestionar', 'd'),
 	(4, 'Usuarios', '../usuarios/register', 'f'),
-	(5, 'Asignar plan a comerciante', '../publicidad/asignar', 's');
+	(5, 'Asignar plan a comerciante', '../publicidad/asignar', 's'),
+	(6, 'Asignar categorías', '../categorias/asignar', 's');
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 
 
@@ -1376,35 +1381,44 @@ CREATE TABLE IF NOT EXISTS `publicidad` (
   CONSTRAINT `fk_publicidad_cuenta1` FOREIGN KEY (`FK_idCuenta`) REFERENCES `cuenta` (`idCuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_publicidad_has_comerciantes_comerciantes1` FOREIGN KEY (`FK_idComerciante`) REFERENCES `comerciantes` (`idComerciante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_publicidad_has_comerciantes_publicidad1` FOREIGN KEY (`FK_idPublicidad`) REFERENCES `tipo_publicidad` (`idPublicidad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.publicidad: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.publicidad: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `publicidad` DISABLE KEYS */;
 INSERT INTO `publicidad` (`idPublicidad`, `FK_idPublicidad`, `FK_idComerciante`, `Fecha`, `Estado`, `FK_idCuenta`) VALUES
 	(1, 1, 1, '2016-06-30 02:13:34', 'T', 2),
 	(2, 1, 2, '2016-06-30 02:16:25', 'T', 2),
-	(5, 1, 2, '2016-06-30 02:42:48', 'T', 2);
+	(5, 1, 2, '2016-06-30 02:42:48', 'T', 2),
+	(6, 2, 2, '2016-07-05 22:57:23', 'T', 2);
 /*!40000 ALTER TABLE `publicidad` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla independiente.registro_categoria
 CREATE TABLE IF NOT EXISTS `registro_categoria` (
   `FK_idComerciante` int(11) NOT NULL,
-  `FK_idCategoria` int(11) NOT NULL,
+  `FK_idSubcategoria` int(11) NOT NULL,
   `RegEstado` enum('T','F') NOT NULL,
-  PRIMARY KEY (`FK_idComerciante`,`FK_idCategoria`),
-  KEY `fk_comerciantes_has_categoria_categoria1_idx` (`FK_idCategoria`),
+  PRIMARY KEY (`FK_idComerciante`,`FK_idSubcategoria`),
+  KEY `fk_comerciantes_has_categoria_categoria1_idx` (`FK_idSubcategoria`),
   KEY `fk_comerciantes_has_categoria_comerciantes1_idx` (`FK_idComerciante`),
-  CONSTRAINT `fk_comerciantes_has_categoria_categoria1` FOREIGN KEY (`FK_idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comerciantes_has_categoria_categoria1` FOREIGN KEY (`FK_idSubcategoria`) REFERENCES `subcategoria` (`idSubcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_comerciantes_has_categoria_comerciantes1` FOREIGN KEY (`FK_idComerciante`) REFERENCES `comerciantes` (`idComerciante`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla independiente.registro_categoria: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla independiente.registro_categoria: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `registro_categoria` DISABLE KEYS */;
-INSERT INTO `registro_categoria` (`FK_idComerciante`, `FK_idCategoria`, `RegEstado`) VALUES
+INSERT INTO `registro_categoria` (`FK_idComerciante`, `FK_idSubcategoria`, `RegEstado`) VALUES
 	(1, 1, 'T'),
+	(1, 5, 'T'),
 	(2, 1, 'T'),
-	(3, 1, 'T');
+	(2, 2, 'T'),
+	(2, 93, 'T'),
+	(2, 134, 'T'),
+	(3, 1, 'T'),
+	(4, 1, 'T'),
+	(5, 95, 'T'),
+	(5, 113, 'T'),
+	(6, 176, 'T');
 /*!40000 ALTER TABLE `registro_categoria` ENABLE KEYS */;
 
 
@@ -1438,6 +1452,199 @@ CREATE TABLE IF NOT EXISTS `servicios` (
 -- Volcando datos para la tabla independiente.servicios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla independiente.subcategoria
+CREATE TABLE IF NOT EXISTS `subcategoria` (
+  `idSubcategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreSubcategoria` varchar(100) NOT NULL,
+  `EstadoSub` enum('T','F') NOT NULL,
+  `FK_idCategoria` int(11) NOT NULL,
+  PRIMARY KEY (`idSubcategoria`),
+  KEY `FK_subcategoria_categoria` (`FK_idCategoria`),
+  CONSTRAINT `FK_subcategoria_categoria` FOREIGN KEY (`FK_idCategoria`) REFERENCES `categoria` (`idCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla independiente.subcategoria: ~176 rows (aproximadamente)
+/*!40000 ALTER TABLE `subcategoria` DISABLE KEYS */;
+INSERT INTO `subcategoria` (`idSubcategoria`, `NombreSubcategoria`, `EstadoSub`, `FK_idCategoria`) VALUES
+	(1, 'ACARREOS', 'T', 1),
+	(2, 'ASADOR DE CARNE A LA MAMONA', 'T', 1),
+	(3, 'CARPINTERO EN ALUMINIO', 'T', 1),
+	(4, 'CATERING DE EVENTOS', 'T', 1),
+	(5, 'CERRAJERO', 'T', 1),
+	(6, 'COCHERO', 'T', 1),
+	(7, 'COMISIONISTA', 'T', 1),
+	(8, 'CONFECCIONISTA DE TRAJES AMAZONICOS', 'T', 1),
+	(9, 'DECORADOR EN YESO', 'T', 1),
+	(10, 'DISEÑADOR GRAFICO', 'T', 1),
+	(11, 'DISEÑADOR DE CARROCERIAS', 'T', 1),
+	(12, 'DJ Y ANIMADOR', 'T', 1),
+	(13, 'EBANISTA', 'T', 1),
+	(14, 'ELECTRICISTA AUTOMOTRIZ', 'T', 1),
+	(15, 'ESTETICISTA', 'T', 1),
+	(16, 'ESTILISTA Y PELUQUERIA (BARBERO)', 'T', 1),
+	(17, 'FABRICANTE DE CALZADO FINO', 'T', 1),
+	(18, 'FABRICANTE DE FAJAS', 'T', 1),
+	(19, 'FABRICANTE DE LAPIDAS', 'T', 1),
+	(20, 'FOTOGRAFO', 'T', 1),
+	(21, 'FUMIGADOR', 'T', 1),
+	(22, 'INSTRUCTOR AEROBICOS', 'T', 1),
+	(23, 'INSTRUCTOR DE BAILE', 'T', 1),
+	(24, 'JOYERO', 'T', 1),
+	(25, 'LATONERO', 'T', 1),
+	(26, 'MAESTRO DE OBRA', 'T', 1),
+	(27, 'MAESTRO DE OBRA BLANCA', 'T', 1),
+	(28, 'MANICURISTA', 'T', 1),
+	(29, 'MECANICO DE BICICLETAS', 'T', 1),
+	(30, 'MECANICO DE CARROS', 'T', 1),
+	(31, 'MECANICO DE CARROS DIESEL', 'T', 1),
+	(32, 'MECANICO DE MOTOS', 'T', 1),
+	(33, 'MECANICO INDUSTRIAL', 'T', 1),
+	(34, 'MODISTERIA Y CONFECCION (SASTRE)', 'T', 1),
+	(35, 'MONTALLANTAS', 'T', 1),
+	(36, 'MOTOCARRO', 'T', 1),
+	(37, 'MARMOLEROS', 'T', 1),
+	(38, 'OFICIAL DE OBRAS', 'T', 1),
+	(39, 'OPERARIO DE SOLDADURA', 'T', 1),
+	(40, 'ORGANIZADOR DE EVENTOS', 'T', 1),
+	(41, 'ORNAMENTADOR', 'T', 1),
+	(42, 'ORNAMENTADOR EN ALUMINIO', 'T', 1),
+	(43, 'PANADERO', 'T', 1),
+	(44, 'PINTOR DE ARTE COUNTRY', 'T', 1),
+	(45, 'PINTOR DE CARROS', 'T', 1),
+	(46, 'PINTOR DE MOTOS', 'T', 1),
+	(47, 'PINTOR DE MUEBLES', 'T', 1),
+	(48, 'PLOMERO', 'T', 1),
+	(49, 'POLICHADOR DE CARROS Y MOTOS', 'T', 1),
+	(50, 'PUBLICISTA', 'T', 1),
+	(51, 'RECONSTRUCTORES DE MAQUINARIA PESADA Y SOLDADURA ESPECIALES', 'T', 1),
+	(52, 'RELOJERO', 'T', 1),
+	(53, 'SERENATERO', 'T', 1),
+	(54, 'TALABARTERO', 'T', 1),
+	(55, 'TAPICERO DE MUEBLES', 'T', 1),
+	(56, 'TAXISTA', 'T', 1),
+	(57, 'TORNERO', 'T', 1),
+	(58, 'TECNICO AUXILIAR DE ENFERMERIA', 'T', 1),
+	(59, 'TECNICO DISEÑO DE ARTE', 'T', 1),
+	(60, 'TECNICO A. FORMACION INFANCIA', 'T', 1),
+	(61, 'TECNICO CAMARAS DE SEGURIDAD', 'T', 1),
+	(62, 'TECNICO CELULARES', 'T', 1),
+	(63, 'TECNICO CONSTRUCCION', 'T', 1),
+	(64, 'TECNICO ELECTRICISTA', 'T', 1),
+	(65, 'TECNICO ELECTRODOMESTICOS', 'T', 1),
+	(66, 'TECNICO ELECTRONICA', 'T', 1),
+	(67, 'TECNICO EN DRYWALL', 'T', 1),
+	(68, 'TECNICO FARMACIA', 'T', 1),
+	(69, 'TECNICO FOTOCOPIADORAS', 'T', 1),
+	(70, 'TECNICO GAS NATURAL VEHICULAR', 'T', 1),
+	(71, 'TECNICO LAVADORAS', 'T', 1),
+	(72, 'TECNICO MANTENIMIENTO DE PURIFICADORES', 'T', 1),
+	(73, 'TECNICO MAQUINARIA AGRICOLA', 'T', 1),
+	(74, 'TECNICO MAQUINAS DE COSER', 'T', 1),
+	(75, 'TECNICO NEVERAS', 'T', 1),
+	(76, 'TECNICO PANADERIA', 'T', 1),
+	(77, 'TECNICO REFRIGERACION', 'T', 1),
+	(78, 'TECNICO REGENCIA EN FARMACIA', 'T', 1),
+	(79, 'TECNICO SISTEMAS', 'T', 1),
+	(80, 'TECNICO TELEFONOS', 'T', 1),
+	(81, 'VENDEDORA DE YANBAL', 'T', 1),
+	(82, 'VIDRIERO Y MARQUETERIA', 'T', 1),
+	(83, 'VOLQUETERO', 'T', 1),
+	(84, 'ZAPATERO', 'T', 1),
+	(85, 'TECNOLOGO AGROFORESTAL', 'T', 2),
+	(86, 'TECNOLOGO ANIMACION 3D', 'T', 2),
+	(87, 'TECNOLOGO CONSTRUCCION Y/O CONTRATISTA EN OBRAS CIVILES', 'T', 2),
+	(88, 'TECNOLOGO CONTABILIDAD Y FINANZAS', 'T', 2),
+	(89, 'TECNOLOGO CONTROL AMBIENTAL', 'T', 2),
+	(90, 'TECNOLOGO DIRECCION DE VENTAS', 'T', 2),
+	(91, 'TECNOLOGO ELECTRICISTA', 'T', 2),
+	(92, 'TECNOLOGO EN MECANICA AUTOMOTRIZ', 'T', 2),
+	(93, 'TECNOLOGIA DE LA INFORMACION Y LA COMUNICACIÓN (TIC)', 'T', 2),
+	(94, 'TECNOLOGO GESTION DE MERCADOS', 'T', 2),
+	(95, 'TECNOLOGO GESTION DE TALENTO HUMANO', 'T', 2),
+	(96, 'TOPOGRAFO', 'T', 2),
+	(97, 'ABOGADO', 'T', 3),
+	(98, 'ADMINISTRADOR DE EMPRESAS', 'T', 3),
+	(99, 'ADMINISTRADOR DE EMPRESAS AGROPECUARIAS', 'T', 3),
+	(100, 'ADMINISTRADOR FINANCIERO', 'T', 3),
+	(101, 'ARQUITECTO', 'T', 3),
+	(102, 'BACTERIOLOGO', 'T', 3),
+	(103, 'BIOLOGO', 'T', 3),
+	(104, 'CONTADOR PUBLICO', 'T', 3),
+	(105, 'ECONOMISTA', 'T', 3),
+	(106, 'ENFERMERIA', 'T', 3),
+	(107, 'FISIOTERAPEUTA', 'T', 3),
+	(108, 'INGENIERO AGROECOLOGO', 'T', 3),
+	(109, 'INGENIERO AGRONOMO', 'T', 3),
+	(110, 'INGENIERO BIOMEDICO', 'T', 3),
+	(111, 'INGENIERO INDUSTRIAL', 'T', 3),
+	(112, 'INGENIERO DE ALIMENTOS', 'T', 3),
+	(113, 'INGENIERO DE SISTEMAS', 'T', 3),
+	(114, 'INGENIERO ELECTRICISTA', 'T', 3),
+	(115, 'INGENIERO ELECTRONICO', 'T', 3),
+	(116, 'LICENCIADO EN EDUCACION FISICA', 'T', 3),
+	(117, 'LICENCIADO EN LINGÜÍSTICA Y LITERATURA', 'T', 3),
+	(118, 'LICENCIADO EN MATEMATICAS Y FISICA', 'T', 3),
+	(119, 'LICENCIADO EN PEDAGOGIA INFANTIL', 'T', 3),
+	(120, 'MEDICO VETERINARIO Y/O ZOOTECNISTA', 'T', 3),
+	(121, 'MEDICO GENERAL', 'T', 3),
+	(122, 'NUTRICIONISTA', 'T', 3),
+	(123, 'ODONTOLOGO', 'T', 3),
+	(124, 'OPTOMETRA', 'T', 3),
+	(125, 'ORTODONCISTA', 'T', 3),
+	(126, 'PERIODONCISTA', 'T', 3),
+	(127, 'PSICOLOGO', 'T', 3),
+	(128, 'PSIQUIATRIA GENERAL', 'T', 3),
+	(129, 'REGENTE EN FARMACIA', 'T', 3),
+	(130, 'SALUD OCUPACIONAL', 'T', 3),
+	(131, 'TERAPEUTA OCUPACIONAL', 'T', 3),
+	(132, 'TERAPEUTA RESPIRATORIA', 'T', 3),
+	(133, 'TRABAJADORA SOCIAL', 'T', 3),
+	(134, 'ADMINISTRACION EDUCATIVA', 'T', 4),
+	(135, 'AUDITORIA DE SERVICIOS DE SALUD', 'T', 4),
+	(136, 'CALIDAD', 'T', 4),
+	(137, 'CIRUJANO MAXILOFACIAL', 'T', 4),
+	(138, 'CIENCIAS FISICAS', 'T', 4),
+	(139, 'CONSTRUCCION REDES EN SOFTWARE', 'T', 4),
+	(140, 'DERECHO ADMINISTRATIVO', 'T', 4),
+	(141, 'DERECHOS HUMANOS', 'T', 4),
+	(142, 'DERECHO PROBATORIO', 'T', 4),
+	(143, 'DERECHO PROCESAL PENAL', 'T', 4),
+	(144, 'DERECHO SANCIONATORIO', 'T', 4),
+	(145, 'DERMATOLOGO', 'T', 4),
+	(146, 'DIDACTICA DE LA LECTURA Y ESCRITURA', 'T', 4),
+	(147, 'FARMACODEPENDENCIA', 'T', 4),
+	(148, 'FINANZAS', 'T', 4),
+	(149, 'FORMULACION Y EVALUACION DE PROYECTOS', 'T', 4),
+	(150, 'GERENCIA TALENTO HUMANO', 'T', 4),
+	(151, 'GERENCIA EN SALUD', 'T', 4),
+	(152, 'GERENCIA TRIBUTARIA', 'T', 4),
+	(153, 'INGENIERIA AMBIENTAL', 'T', 4),
+	(154, 'INGENIERIA BIOMEDICA', 'T', 4),
+	(155, 'KINESIOLOGO APLICADO', 'T', 4),
+	(156, 'MATEMATICAS AVANZADA', 'T', 4),
+	(157, 'MEDICO FUNCIONAL', 'T', 4),
+	(158, 'MEDICINA INTEGRATIVA', 'T', 4),
+	(159, 'MEDICO LABORAL', 'T', 4),
+	(160, 'MEDICO ORTOMOLECULAR', 'T', 4),
+	(161, 'ORTOPEDIA Y TRAUMATOLOGIA', 'T', 4),
+	(162, 'PEDAGOGIA', 'T', 4),
+	(163, 'PEDIATRIA', 'T', 4),
+	(164, 'PSIQUIATRIA PEDIATRICA', 'T', 4),
+	(165, 'REDES DE ALTA VELOCIDAD', 'T', 4),
+	(166, 'REVISOR FISCAL', 'T', 4),
+	(167, 'SANIDAD VEGETAL', 'T', 4),
+	(168, 'SISTEMAS SOSTENIBLES DE PRODUCCION', 'T', 4),
+	(169, 'VERIFICADORA DE HABILITACION DE MINISTERIO', 'T', 4),
+	(170, 'ADMINISTRACION', 'T', 5),
+	(171, 'AGRICULTURA ECOLOGICA', 'T', 5),
+	(172, 'CIENCIAS BIOLOGICAS', 'T', 5),
+	(173, 'EDUCACION', 'T', 5),
+	(174, 'EDUCACION CON ENFASIS EN DIDACTICAS DE LAS MATEMATICAS', 'T', 5),
+	(175, 'GENETICA HUMANA', 'T', 5),
+	(176, 'MATEMATICA APLICADA', 'T', 5);
+/*!40000 ALTER TABLE `subcategoria` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla independiente.tipo_publicidad

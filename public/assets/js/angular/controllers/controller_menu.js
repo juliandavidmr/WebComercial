@@ -59,11 +59,27 @@ app.controller('ControllerMenu', [
       });
     };
 
+    $scope.getSubcategorias = function(id) {
+      $http.get('/api/Subcategorias/'+id).success(function(data, status, headers, config) {
+        console.log("hola yilmar: " + id);
+        $scope.listSubcategorias = data.datos;
+        $scope.NameCat = data.datos[0];
+
+      }).error(function(data, status, headers, config) {
+        console.log("Error> " + data);
+      });
+    };
+
     $scope.getComerciantesByCategory = function(idCat) {
       $http.get('/api/Comerciantes/'+idCat).success(function(data, status, headers, config) {
+        console.log("hola il");
         $scope.DatosComerciales = data.datos;
+        $scope.ResultData = "";
+        if(data.datos.length==0){
+            $scope.ResultData = "No se encontraron resultados";
+        }
           //var s = "<h1><i class='"+data[0].Class+"'></i>"+data[0].NombreCategoria+"</h1>" ;
-        $scope.NameCat = data.categoria[0];
+
 
       }).error(function(data, status, headers, config) {
         console.log("Error> " + data);

@@ -1778,6 +1778,31 @@ a.work:hover {
 	font-size:70px;
 	color:#F22613;
 }
+
+.client2 {
+	float:left;
+	width: 18%;
+	margin-right: 0%;
+}
+.client2 img {
+	width:100%;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	-ms-border-radius: 50%;
+}
+.client2-info {
+	float:left;
+	width: 79%;
+}
+.Descripcion{
+	font-size: 9pt;
+}
+.Descripcion i{
+	margin-right: 10px;
+}
+
 .client {
 	float:left;
 	width: 25%;
@@ -2324,6 +2349,7 @@ h3.rate {
 }
 .btn-group.bootstrap-select.show-tick button {
     padding: 8px 10px;
+		width: 180%;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 260px;

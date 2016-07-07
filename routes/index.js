@@ -3,6 +3,7 @@ const router 			= express.Router();
 
 import { Menu } from "../db/db_menu";
 import { Comerciante } from "../db/db_comerciante";
+import { Categoria } from "../db/db_categorias";
 
 const dir = '../public/';
 
@@ -11,21 +12,26 @@ const dir = '../public/';
  });
 
  router.get('/consultas', function(req, res) {
-   const d ={
-     idCat: 0,
+   const d = {
+     idCat:0,
      datos:null
    }
   res.render(dir + 'views/consultas',{ data: d});
  });
 
+ router.get('/empresa', function(req, res) {
+  res.render(dir + 'views/empresa');
+ });
+
  router.get('/consultas/:id', function(req, res) {
    var id = req.params.id;
-   new Comerciante().getComercianteByCategoria(id, function(row) {
-     const d ={
-       idCat: id,
-       datos:row
+
+   new Categoria().getSubcategoriasByCategoria(id, function(row, est) {
+     const d = {
+       datos:row,
+       idCat: id
      }
-     res.render(dir + 'views/consultas',{ data: d});
+     res.render(dir + 'views/consultas',{data: d});
    });
  });
 

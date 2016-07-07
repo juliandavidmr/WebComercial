@@ -35,4 +35,34 @@ export class Categoria {
         console.error("ERROR" + error)
       });
   };
+
+	//Get 'subcategoria' by Id
+	getSubcategoriaById(id, callback) {
+		knex(cdb.namest.subcategoria).where('idSubcategoria', id)
+			.select('*')
+			.then(function(row) {
+				callback(row);
+			})
+			.catch(function(error) {
+				console.error("ERROR" + error)
+			});
+	}
+
+	//Get 'subcategorias' by IdCategoria
+	getSubcategoriasByCategoria(idCat, callback) {
+		knex.where({
+			FK_idCategoria: idCat,
+			EstadoSub:  'T'
+		})
+		.select('*')
+		.from(cdb.namest.subcategoria)
+		.innerJoin(cdb.namest.categoria, cdb.namest.subcategoria + '.FK_idCategoria', cdb.namest.categoria + '.idCategoria')
+		.orderBy('NombreSubcategoria')
+		.then(function(row) {
+			callback(row);
+		})
+		.catch(function(error) {
+			console.error("ERROR" + error)
+		});
+	}
 }
