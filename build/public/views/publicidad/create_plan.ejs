@@ -1,0 +1,158 @@
+<script type="text/javascript">
+$(document).ready(function () {
+var elem=$('#container ul');
+	$('#viewcontrols a').on('click',function(e) {
+		if ($(this).hasClass('gridview')) {
+			elem.fadeOut(1000, function () {
+				$('#container ul').removeClass('list').addClass('grid');
+				$('#viewcontrols').removeClass('view-controls-list').addClass('view-controls-grid');
+				$('#viewcontrols .gridview').addClass('active');
+				$('#viewcontrols .listview').removeClass('active');
+				elem.fadeIn(1000);
+			});
+		}
+		else if($(this).hasClass('listview')) {
+			elem.fadeOut(1000, function () {
+				$('#container ul').removeClass('grid').addClass('list');
+				$('#viewcontrols').removeClass('view-controls-grid').addClass('view-controls-list');
+				$('#viewcontrols .gridview').removeClass('active');
+				$('#viewcontrols .listview').addClass('active');
+				elem.fadeIn(1000);
+			});
+		}
+	});
+});
+</script>
+<div class="wrapper">
+          <div class="main-panel">
+              <div class="content">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card">
+                                <!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
+                                  <div class="header">
+                                    <h1 class="title">Gestionar Planes de Publicidad</h1>
+                                  </div>
+                                  <hr/>
+                                  <div class="content">
+                                      <form method="post" action="/publicidad/new_plan">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Descripción</label>
+                                                      <input type="text" class="form-control" name="descripcion" required>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Valor mensual ($)</label>
+                                                      <input type="text" class="form-control" name="precio" pattern="[0-9]*" title="Digita sólo números" required>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Estado</label>
+                                                      <select name="estado" class="form-control" required>
+                                                        <option value="T">Activo</option>
+                                                        <option value="F">Inactivo</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Espacio en pantalla</label>
+                                                      <select name="puntaje" class="form-control" required="">
+                                                        <option value="12">100%</option>
+                                                        <option value="6">50%</option>
+                                                        <option value="3">25%</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Cantidad de servicios</label>
+                                                      <input type="text" class="form-control" name="nro_servicios" pattern="[0-9]*" title="Digita sólo números" required>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+
+                                          <button type="submit" class="btn btn-info btn-fill pull-right">Registrar</button>
+                                          <div class="clearfix"></div>
+
+                                          <div class="ads-display col-md-12">
+                                  					<div class="wrapper">
+                                  					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+                                  					  <div id="myTabContent" class="tab-content" ng-init="getPlanes()">
+                                  						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                  						   <div>
+                                  												<div id="container">
+
+                                                    <div class="header">
+                                                      <h1 class="title">Listado de Planes de Publicidad</h1>
+                                                    </div>
+
+																										<div class="col-md-6 page_1"><br/>
+																							              <table class="table table-bordered">
+																											<thead>
+																												<tr>
+																													<th>#</th>
+																													<th>Nombre</th>
+																													<th>Servicios</th>
+																													<th>Espacio en pantalla</th>
+																													<th>Valor mensual</th>
+																													<th></th>
+																												</tr>
+																											</thead>
+																											<tbody>
+																												<tr ng-repeat="l in listPlanes" ng-value="{{l.idPublicidad}}">
+																													<td >{{l.idPublicidad}}</td>
+																													<td>{{l.Descripcion}}</td>
+																													<td>{{l.NroServicios}}</td>
+																													<td>{{l.Space}} %</td>
+																													<td><span class="badge badge-primary"> ($) {{l.ValorMensual}}</span></td>
+																													<td><a href="#"><span class="badge badge-warning"> Modificar</span></a></td>
+																												</tr>
+																											</tbody>
+																										  </table>
+																									</div>
+                                                    <div class="clearfix"></div>
+                                                    <hr/>
+                                                      <ul class="list" ng-model="Plan">
+                                        								<a href="#">
+
+                                        									<li ng-repeat="l in listPlanes" ng-value="{{l.idPublicidad}}">
+                                        									<section class="list-left">
+                                        									<h5 class="title">{{l.Descripcion}}</h5>
+                                        									<p class="catpath"><b>Valor mensual ($): </b>{{l.ValorMensual}}</p>
+                                        									</section>
+                                        									<section class="list-right">
+                                        									<span class="date"><b>Espacio: </b> {{l.Space}} %</span>
+                                        									<span class="cityname"><b>Servicios: </b>{{l.NroServicios}}</span>
+                                        									</section>
+                                        									<div class="clearfix"></div><br/>
+                                        									</li>
+                                        								</a>
+                                                      </ul>
+                                  						</div>
+                                  							</div>
+                                  						</div>
+
+                                  					  </div>
+                                  					</div>
+                                  				</div>
+                                  				</div>
+
+
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>

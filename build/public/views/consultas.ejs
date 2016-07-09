@@ -1,0 +1,170 @@
+<% include header %>
+
+  <% include scripts %>
+  <script type="text/javascript">
+  function openMap(){
+    alert("ghj");
+  $('#myModal').modal('');
+  }
+  </script>
+
+  <title>Consultas</title>
+
+  <div class="header">
+  		<div class="container">
+  			<div class="logo">
+          <a href="/">El <span>In</span>dependiente</a>
+        </div>
+        <div class="header-right">
+
+        <a class="account" href="/"><i class="fa fa-home"></i> Página principal</a>
+  	<!-- Large modal -->
+  		</div>
+  		</div>
+  	</div>
+    <!--<div class="banner text-center">
+  	  <div class="container">
+        <h1>Guía Telefónica   <span class="segment-heading">    de números celulares </span></h1>
+        <p>La solución técnica al instante</p>
+  	  </div>
+  	</div>-->
+      <div ng-controller="ControllerMenu">
+    		<div class="container">
+    			<div class="row">
+            <div class="categories" style="text-align: center" ng-init="getCategorias()">
+              <div class="container">
+                  <div style="background-color:rgb(245, 245, 245)">
+                  <h3>Elige la categoría</h3>
+                </div>
+                <div class="col-md-12 col-md-offset-1">
+                <div class="col-md-2 focus-grid" ng-repeat="l in listCategorias" >
+                <a href="#" ng-click="getSubcategorias(l.idCategoria)">
+                    <div class="focus-border">
+                      <div class="focus-layout">
+                        <div class="focus-image"><i class="{{l.Class}}"></i></div>
+                        <h4 class="clrchg">{{l.NombreCategoria}}</h4>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              </div>
+            </div>
+
+            <div class="grid_3 grid_5" style="background-color:rgb(245, 245, 245)" >
+                <div class="text-right">
+                  <div class="col-md-5">
+                    <h2><i class="fa fa-search"></i> <span ng-bind="NameCat.NombreCategoria"></span></h2>
+                  </div>
+                </div>
+                <div class="text-left" >
+                  <div class="col-md-5">
+                    <div class="form-group" ng-init="getSubcategorias(<%= data.idCat %>)">
+                        <select name="subcategoria" ng-model="Sub" ng-change="getComerciantesByCategory(Sub)" class="form-control" required="">
+                           <option ng-repeat="l2 in listSubcategorias" ng-value="{{l2.idSubcategoria}}">{{l2.NombreSubcategoria}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  </div>
+                <hr/>
+              </div>
+              <div class="happy-clients-grids">
+                <div class="text-center">
+                    <h3></i> <span ng-bind="ResultData"></span></h3>
+                </div>
+        						<div class="col-md-4 happy-clients-grids" style="height: 200px;" data-wow-delay="0.4s" ng-repeat="d in DatosComerciales">
+        							<div class="client2">
+                        <div class="category-img">
+        									<div><i style="font-size:30pt" class="{{d.Class}}"></i></div>
+        								</div>
+        							</div>
+        							<div class="client2-info">
+                        <h4>{{d.Nombre}}</h4>
+      									<p>{{d.DescripcionCom}}</p>
+                        <div class="Descripcion">
+                        <i class="fa fa-map-marker"></i>  {{d.Direccion}}<br/>
+                        <i class="fa fa-phone"></i>  {{d.Telefono}}<br/>
+                        <i class="fa fa-envelope"></i>  {{d.Correo}}<br/><br/>
+                      </div>
+                        <a href="#" onclick="openMap()"><span class="badge badge-danger"><i class="fa fa-location-arrow"></i> Ver mapa</span></a>
+                        <i class="fa fa-star"></i> {{d.Stars}}
+        							</div>
+        						</div>
+        					</div>
+
+
+         	   <div class="clearfix"> </div>
+         	   </div>
+              </div>
+    </div>
+
+<hr/>
+
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="foo-grids">
+
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom text-center">
+  <div class="container">
+    <div class="footer-logo">
+      <a href="/">EL <span>IN</span>DEPENDIENTE</a>
+    </div>
+    <div class="footer-social-icons">
+      <ul style="color:white">
+        <li><span class="glyphicon glyphicon-map-marker"></span></li>
+        <li>UNIDAD DE EMPRENDIMIENTO - UNIVERSIDAD DE LA AMAZONIA</li>
+        <li><span class="glyphicon glyphicon-earphone"></span></li>
+        <li>315 673 9482</li>
+        <li><span class="glyphicon glyphicon-envelope"></span></li>
+        <li>lvargas08@gmail.com
+        </li>
+      </ul>
+      <ul>
+        <br/>
+        <li><a class="facebook" href="#"><span>Facebook</span></a></li>
+        <li><a class="twitter" href="#"><span>Twitter</span></a></li>
+        <li><a class="flickr" href="#"><span>Flickr</span></a></li>
+        <li><a class="googleplus" href="#"><span>Google+</span></a></li>
+        <li><a class="dribbble" href="#"><span>Dribbble</span></a></li>
+      </ul>
+    </div>
+    <div class="copyrights">
+      <p> © 2016. Todos los derechos reservados.</p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+</footer>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;</button>
+              <h4 class="modal-title" id="myModalLabel">
+                Please Choose Your Location</h4>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <select id="basic2" class="show-tick form-control" multiple>
+
+                  </select>
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<% include footer %>

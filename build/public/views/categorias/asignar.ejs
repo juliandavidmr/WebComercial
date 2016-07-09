@@ -1,0 +1,61 @@
+
+<div class="wrapper">
+          <div class="main-panel">
+              <div class="content">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card">
+                                <!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
+                                  <div class="header">
+                                    <h1 class="title">Asignar categorías</h1>
+                                  </div>
+                                  <hr/>
+                                  <div class="content">
+                                      <form method="post" action="/comerciante/asignar_categoria">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group" ng-init="getComerciantes()">
+                                                      <label>Comerciante</label>
+                                                      <br/>
+                                                      <select style="width:600px" name="comerciante" class="selectpicker show-tick" data-live-search="true" style="width:300px"  required="">
+                                                        <% for(var i=0;i< data.comerciantes.length;i++){
+                                                         %>
+                                                          <option value="<%= data.comerciantes[i].idComerciante %>" data-tokens="<%= data.comerciantes[i].Nombre %>"><%= data.comerciantes[i].Nombre %></option>
+                                                         <% } %>
+                                                      </select>
+                                                      <!--<select name="comerciante" ng-model="Comerciante" class="form-control" required="">
+                                                        <option ng-repeat="l in listComerciantes" ng-value="{{l.idComerciante}}" >{{l.Nombre}}</option>
+                                                      </select>-->
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <div class="form-group" ng-init="getCategorias()">
+                                                      <label>Categoría</label>
+                                                      <select name="categoria" ng-model="Cat" ng-change="getSubcategorias(Cat)" class="form-control" required="">
+                                                        <option ng-repeat="l in listCategorias" ng-value="{{l.idCategoria}}">{{l.NombreCategoria}}</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Subcategoría</label>
+                                                      <select name="subcategoria" class="form-control" required="">
+                                                        <option ng-repeat="l in listSubcategorias" ng-value="{{l.idSubcategoria}}">{{l.NombreSubcategoria}}</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <button type="submit" class="btn btn-info btn-fill pull-right">Guardar</button>
+                                          <div class="clearfix"></div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>

@@ -1,0 +1,53 @@
+
+<div class="wrapper">
+          <div class="main-panel">
+              <div class="content">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card">
+                                <!--<span class="active total" style="display:block;" data-toggle="modal" data-target="#myModal"><strong>All USA</strong> (Select your city to see local ads)</span>-->
+                                  <div class="header">
+                                    <h1 class="title">Asignar publicidad</h1>
+                                  </div>
+                                  <hr/>
+                                  <div class="content">
+                                      <form method="post" action="/publicidad/new_publicidad">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group" ng-init="getComerciantes()">
+                                                      <label>Comerciante</label>
+                                                      <br/>
+                                                      <select style="width:600px" name="comerciante" class="selectpicker show-tick" data-live-search="true" style="width:300px"  required="">
+                                                        <% for(var i=0;i< data.comerciantes.length;i++){
+                                                         %>
+                                                          <option value="<%= data.comerciantes[i].idComerciante %>" data-tokens="<%= data.comerciantes[i].Nombre %>"><%= data.comerciantes[i].Nombre %></option>
+                                                         <% } %>
+                                                      </select>
+                                                      <!--<select name="comerciante" ng-model="Comerciante" class="form-control" required="">
+                                                        <option ng-repeat="l in listComerciantes" ng-value="{{l.idComerciante}}" >{{l.Nombre}}</option>
+                                                      </select>-->
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-7">
+                                                  <div class="form-group" ng-init="getPlanes()">
+                                                      <label>Plan de publicidad</label>
+                                                      <select name="plan" class="form-control" required="">
+                                                        <option ng-repeat="l in listPlanes" ng-value="{{l.idPublicidad}}">{{l.Descripcion}}</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <button type="submit" class="btn btn-info btn-fill pull-right">Guardar</button>
+                                          <div class="clearfix"></div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
